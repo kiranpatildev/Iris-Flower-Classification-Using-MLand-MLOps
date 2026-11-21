@@ -1,0 +1,47 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python -m iris_flow.prepare
+    deps:
+    - path: src/iris_flow/prepare.py
+      hash: md5
+      md5: 44bf845ca69a8fd6cd20f608ccc1689c
+      size: 692
+    outs:
+    - path: data/iris.csv
+      hash: md5
+      md5: 10f5f61b137fa708403ea5c480386bfe
+      size: 2908
+  train:
+    cmd: python -m iris_flow.train
+    deps:
+    - path: data/iris.csv
+      hash: md5
+      md5: 10f5f61b137fa708403ea5c480386bfe
+      size: 2908
+    - path: src/iris_flow/constants.py
+      hash: md5
+      md5: d3def2dbee5bbd17a02eee88d6f57781
+      size: 189
+    - path: src/iris_flow/train.py
+      hash: md5
+      md5: 08fe5fa45ce365a34dc88ff7d01768ad
+      size: 2176
+    params:
+      params.yaml:
+        model:
+          n_estimators: 100
+          max_depth: 5
+          random_state: 42
+        split:
+          test_size: 0.2
+          random_state: 42
+    outs:
+    - path: models/iris_model.joblib
+      hash: md5
+      md5: 354cc8ade197ff917b6b1f12a52b7e83
+      size: 163457
+    - path: reports/metrics.json
+      hash: md5
+      md5: ae5576e0eacb39ab80b4004f46cfc5b1
+      size: 1000

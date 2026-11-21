@@ -1,0 +1,22 @@
+stages:
+  prepare:
+    cmd: python -m iris_flow.prepare
+    deps:
+      - src/iris_flow/prepare.py
+    outs:
+      - data/iris.csv
+  train:
+    cmd: python -m iris_flow.train
+    deps:
+      - data/iris.csv
+      - src/iris_flow/constants.py
+      - src/iris_flow/train.py
+    params:
+      - model
+      - split
+    outs:
+      - models/iris_model.joblib
+    metrics:
+      - reports/metrics.json:
+          cache: false
+

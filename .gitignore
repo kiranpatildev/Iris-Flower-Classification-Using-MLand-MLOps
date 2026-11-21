@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.egg-info/
+*.py[cod]
+.dvc/cache/
+.dvc/tmp/
+.dvc/site-cache/
+data/iris.csv
+models/
+reports/metrics.json
+mlruns/
+mlflow.db
+.env
+
